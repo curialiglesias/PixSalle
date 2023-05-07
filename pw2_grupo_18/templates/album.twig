@@ -1,0 +1,33 @@
+{% extends "base.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="../../css/styles.css">
+{% endblock %}
+
+{% block title %}Album{% endblock %}
+
+{% block content %}
+  <h1>Album {{ album.title }}</h1>
+  <form action="/portfolio/album/{{album.id}}" method="POST">
+    <p>Upload new photo:</p>
+    <input class="album-title" type="text" name="photo-url" placeholder="Insert photo url" required>
+    <input type="submit" class="submit" value="Upload photo">
+  </form>
+
+  <form action="/portfolio/album/{{album.id}}" method="DELETE">
+    <input type="submit" class="submit" value="Delete Album">
+  </form>
+
+  <form action="/portfolio/album/{{album.id}}/qr" method="POST">
+    <input type="submit" class="submit" value="Create QR">
+  </form>
+
+  <div class="flexbox">
+    <div class="grid">
+      {% for photo in album.photos %}
+        <img class="photo" src="{{ photo.url }}" alt="photo">
+      {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}

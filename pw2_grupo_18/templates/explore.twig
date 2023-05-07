@@ -1,0 +1,18 @@
+{% extends "base.twig" %}
+
+{% block title %}Explore{% endblock %}
+
+{% block content %}
+  <h1>PixSalle - Explore</h1>
+  <p class="landing-text">Explore these amazing images.</p>
+  <div class="flexbox">
+    <div class="grid">
+      {% for photo in photos %}
+          <div>
+              <img src="{{ photo['url'] }}" alt="photo">
+              <p>Author: {{ photo['username'] }}</p>
+          </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="../css/styles.css">
+{% endblock %}
+
+{% block title %}Wallet{% endblock %}
+
+{% block content %}
+  <h1>{{username}}'s Wallet</h1>
+  <form action="{{ formAction }}" method="POST">
+    <p>You currently have in your wallet:</p>
+    <span class="currency"><input type="number" placeholder="{{ wallet }}" readonly>€</span>
+    <p>How much money do you want to add to your wallet?</p>
+    <span class="currency"><input type="number" name="amount">€</span>
+    <input type="submit" class="submit" value="Add to wallet">
+    {% if formMessage == 'Error' %}
+      <p class="error">The amount should be greater than 0.</p>
+    {% elseif formMessage == 'Success' %}
+      <p class="success">Money added successfully.</p>
+    {% endif %}
+  </form>
+  {% if notifications is not empty %}
+    <ol>
+      {% for notification in notifications %}
+        <li>{{ notification }}</li>
+      {% endfor %}
+    </ol>
+  {% endif %}
+{% endblock %}

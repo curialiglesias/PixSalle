@@ -1,0 +1,26 @@
+{% extends "base.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="../css/styles.css">
+{% endblock %}
+
+{% block title %}Membership{% endblock %}
+
+{% block content %}
+  <h1>{{username}}'s Membership</h1>
+  <form action="{{ formAction }}" method="POST">
+    <p>You current membership plan:</p>
+    <input class="membership" type="text" placeholder="{{ membership }}" readonly>
+    <p>Do you want to change your membership plan?</p>
+    <select class="membership-selector" name="new_membership">
+      <option value="Cool">Cool</option>
+      <option value="Active">Active</option>
+    </select>
+    <input type="submit" class="submit" value="Change membership">
+    {% if formMessage == 'Error'%}
+      <p class="error">An error has occurred.</p>
+    {% elseif formMessage == 'Success' %}
+      <p class="success">Membership changed successfully.</p>
+    {% endif %}
+  </form>
+{% endblock %}

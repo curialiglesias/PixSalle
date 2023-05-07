@@ -1,0 +1,39 @@
+{% extends "base.twig" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="../css/styles.css">
+{% endblock %}
+
+{% block title %}Portfolio{% endblock %}
+
+{% block content %}
+  <h1>{{username}}'s Portfolio</h1>
+  {% if portfolioCreated %}
+    <form action="/portfolio/album-create" method="POST">
+      <p>Portfolio title: {{ portfolio_title }}</p>
+      <p>Create a new Album:</p>
+      <input class="album-title" type="text" name="title" placeholder="Insert title" required>
+      <input type="submit" class="submit" value="Create Album">
+      {% if formError %}
+        <p class="error">You cannot create an Album.</p>
+      {% endif %}
+    </form>
+    <div class="flexbox">
+      <div class="grid">
+        {% for album in albums %}
+          <div>
+            <img src="{{ album.photos[0].url }}" alt="album-cover">
+            <a href="/portfolio/album/{{ album.id }}">{{ album.title }}</a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  {% else %}
+    <form action="/portfolio" method="POST">
+      <p>You don't have a Portfolio, create one:</p>
+      <input class="album-title" type="text" name="title" placeholder="Insert title" required>
+      <input type="submit" class="submit" value="Create Portfolio">
+    </form>
+  {% endif %}
+{% endblock %}

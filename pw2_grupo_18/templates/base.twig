@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% block head %}
+      <meta charset="UTF-8">
+      <meta name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+
+    {% block styles %}
+      <link rel="stylesheet" href="css/styles.css">
+    {% endblock %}
+  </head>
+  <body>
+
+    <header>
+      {% block header %}
+        <nav>
+          <ul>
+              <li><a class="header-link" href="{{url_for('landing')}}">Home</a></li>
+              <li><a class="header-link" href="{{url_for('signIn')}}">Sign-In</a></li>
+              <li><a class="header-link" href="{{url_for('signUp')}}">Sign-Up</a></li>
+          {% if loggedIn %}
+              <li><a class="header-link" href="{{url_for('explore')}}">Explore</a></li>
+              <li><a class="header-link" href="{{url_for('profile')}}">{{username}}'s Profile</a></li>
+              <li><a class="header-link" href="{{url_for('portfolio')}}">Portfolio</a></li>
+              <li><a class="header-link" href="{{url_for('wallet')}}">Wallet</a></li>
+              <li><a class="header-link" href="{{url_for('membership')}}">Membership</a></li>
+          {% endif %}
+          </ul>
+        </nav>
+      {% endblock %}
+    </header> 
+
+    <section class="content">
+      {% block content %}{% endblock %}
+    </section>
+
+    <footer>
+      {% block footer %}
+        <p class="copyright">Copyright &copy; 2022. All Rights Reserved.</p>
+      {% endblock %}
+    </footer>
+  </body>
+</html>

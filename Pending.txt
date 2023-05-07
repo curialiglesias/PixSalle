@@ -1,0 +1,6 @@
+Falta per fer:
+
+Wallet: Fer funcionar el Flash message al no tenir diners per crear Album
+Album: Falta implementar QR i Buscar solució per la cover quan l'album no te cap imatge
+Portfolio: Fer funcionar el Delete de Album i Imatges (funcions de SQL ja fetes)
+Blog: Tot
